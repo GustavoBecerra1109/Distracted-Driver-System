@@ -12,25 +12,19 @@ from tensorflow.keras import layers
 from keras.applications.vgg16 import VGG16
 
 # Getting .csv file
-# df = pd.read_csv("C:/Users/Elizabeth/Desktop/TDP/driver_imgs_list.csv") #Route of .csv filename
 df = pd.read_csv("C:/Users/Elizabeth/Desktop/Sistema_deteccion_distractores_conductores/driver_imgs_list.csv") #Route of .csv filename
 
 features = df["img"]
 labels = df["classname"]
 DIM = 28
 
-# path="C:/Users/Elizabeth/Desktop/TDP/train" #Path of train dataset
 path="C:/Users/Elizabeth/Desktop/Sistema_deteccion_distractores_conductores/train" #Path of train dataset
 folder_names=os.listdir(path)
 img_train = len(features)
-# img_train = 200
+
 img_shape = (DIM, DIM)
 
-# for i,folder in enumerate( folder_names):
-#     print(folder,"contains",len(os.listdir(path+"/"+folder)))
-
 def read_gray():
-    # base="../input/state-farm-distracted-driver-detection/imgs/train" #Path of the image dataset
     base="C:/Users/Elizabeth/Desktop/Sistema_deteccion_distractores_conductores/train" #Path of the image dataset
     image_data=[]
     label_data=[]
@@ -127,7 +121,7 @@ class_dict = {
     7 : "reaching behind",
     8 : "hair and makeup",
     9 : "talking to passenger",
-    10 : "Drowsiness"
+    10 : "drowsiness"
 }
 
 def get_name(index):
