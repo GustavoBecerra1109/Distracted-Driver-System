@@ -17,10 +17,10 @@ def CapsNet(input_shape, n_class, routings, batch_size):
     x = layers.Input(shape=input_shape, batch_size=batch_size)
 
     # Layer 1: Just a conventional Conv2D layer
-    conv1 = layers.Conv2D(filters=256, kernel_size=9, strides=1, padding='valid', activation='relu', name='conv1')(x)
+    conv1 = layers.Conv2D(filters=256, kernel_size=10, strides=1, padding='valid', activation='relu', name='conv1')(x)
 
     # Layer 2: Conv2D layer with `squash` activation, then reshape to [None, num_capsule, dim_capsule]
-    primarycaps = PrimaryCap(conv1, dim_capsule=8, n_channels=32, kernel_size=9, strides=2, padding='valid')
+    primarycaps = PrimaryCap(conv1, dim_capsule=8, n_channels=32, kernel_size=10, strides=2, padding='valid')
 
     # Layer 3: Capsule layer. Routing algorithm works here.
     digitcaps = CapsuleLayer(num_capsule=n_class, dim_capsule=16, routings=routings, name='digitcaps')(primarycaps)
@@ -236,7 +236,7 @@ if __name__ == "__main__":
     from pre_process import DIM
 
     model, eval_model, manipulate_model = CapsNet(input_shape=(DIM, DIM, 1),
-                                                  n_class=10,
+                                                  n_class=11,
                                                   routings=args.routings,
                                                   batch_size=args.batch_size)
 
